@@ -25,12 +25,20 @@ In the medical field, recognizing model limitations is as crucial as the model i
 
 In clinical terms, a False Positive (calling a healthy patient sick) is generally preferred over a False Negative (missing a pneumonia diagnosis), but this bias still requires adjusting. The bias is likely due to class imbalance in the training data, which will be addressed in future iterations.
 
+## 🧑‍⚕️ Clinical AI Evaluation (Grad-CAM Explainability)
+To ensure the model is acting upon valid medical indicators rather than artifacts, **Explainable AI (Grad-CAM)** was integrated to generate heatmaps. A domain expert (MD) review of these heatmaps revealed several critical insights:
+1. **Successful Cardiac Masking:** The model correctly learned to ignore the heart contour as an irrelevant structure for pneumonia classification, heavily down-weighting the cardiac silhouette without explicit masking.
+2. **Image Resolution Confounders:** The original model was trained on `150x150` downscaled inputs. Clinical review confirmed this resolution causes significant pixellation, potentially destroying fine-grained infiltrate details and causing diffuse "confused" (zero-gradient) activations on certain images.
+3. **Background Bias Diagnosis:** The AI occasionally highlighted out-of-body (empty background) areas, exposing a classic CNN bias.
+4. **Focal Pathology Detection:** The model localized activations in the right peri-hilar and left peripheral zones, aligning with expected pneumonic distribution patterns.
+
 ## 🚀 Future Roadmap & Next Steps
 As this project evolves into a production-ready application, the following milestones are planned:
-1. **Mitigating Bias:** Implementing Class Weights or SMOTE to balance the dataset and reduce over-prediction of Pneumonia.
-2. **Clinical Metrics:** Shifting focus from raw "Accuracy" to true medical metrics: **Recall (Sensitivity), Precision, F1-Score**, and plotting a Confusion Matrix.
-3. **Explainable AI (XAI):** Integrating **Grad-CAM** to generate heatmaps, allowing clinicians to see *which parts* of the lung the model used to make its decision.
-4. **Deployment:** Wrapping the model in a **Gradio or Streamlit** web application for real-time inference.
+1. **High-Resolution Architecture:** Re-architecting the model to accept `512x512` inputs to preserve critical radiological tissue details.
+2. **Mitigating Bias:** Implementing Class Weights to balance the dataset and reduce over-prediction of Pneumonia.
+3. **Clinical Metrics:** Shifting focus to true medical metrics: **Recall (Sensitivity), Precision, F1-Score**, and plotting a Confusion Matrix.
+4. ~~**Explainable AI (XAI):**~~ **[COMPLETED]** Integrated Grad-CAM heatmaps and conducted Expert-in-the-Loop clinical evaluation.
+5. **Deployment:** Wrapping the model in a **Gradio or Streamlit** web application for real-time edge inference.
 
 ## 👨‍💻 How to Run
 The entire workflow is contained within a Jupyter Notebook.
