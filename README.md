@@ -1,5 +1,7 @@
 # 🫁 Radiology AI: Chest X-Ray Pneumonia Classification
 
+![Project Banner](banner.png)
+
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![TensorFlow/Keras](https://img.shields.io/badge/TensorFlow-CNN-orange)
 ![Google Colab](https://img.shields.io/badge/Google%20Colab-Environment-yellow)
@@ -55,3 +57,7 @@ The entire workflow is contained within a Jupyter Notebook.
 1. Open the `.ipynb` notebook in Google Colab or your local Jupyter environment.
 2. Upload the respective dataset.
 3. Run all cells sequentially to train and evaluate the model.
+
+---
+### 📖 Detailed Process & Findings
+For a deep dive into the clinical audit methodology, label noise discovery, and the transition to v2.0, please refer to our **[Detailed Clinical Audit Report](success_story.md)**.
