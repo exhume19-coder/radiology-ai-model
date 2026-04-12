@@ -25,20 +25,19 @@ In the medical field, recognizing model limitations is as crucial as the model i
 
 In clinical terms, a False Positive (calling a healthy patient sick) is generally preferred over a False Negative (missing a pneumonia diagnosis), but this bias still requires adjusting. The bias is likely due to class imbalance in the training data, which will be addressed in future iterations.
 
-## 🧑‍⚕️ Clinical AI Evaluation (Grad-CAM Explainability)
-To ensure the model is acting upon valid medical indicators rather than artifacts, **Explainable AI (Grad-CAM)** was integrated to generate heatmaps. A domain expert (MD) review of these heatmaps revealed several critical insights:
-1. **Successful Cardiac Masking:** The model correctly learned to ignore the heart contour as an irrelevant structure for pneumonia classification, heavily down-weighting the cardiac silhouette without explicit masking.
-2. **Image Resolution Confounders:** The original model was trained on `150x150` downscaled inputs. Clinical review confirmed this resolution causes significant pixellation, potentially destroying fine-grained infiltrate details and causing diffuse "confused" (zero-gradient) activations on certain images.
-3. **Background Bias Diagnosis:** The AI occasionally highlighted out-of-body (empty background) areas, exposing a classic CNN bias.
-4. **Focal Pathology Detection:** The model localized activations in the right peri-hilar and left peripheral zones, aligning with expected pneumonic distribution patterns.
+## 🧑‍⚕️ Clinical AI Evaluation (The Final Audit Verdict)
+A rigorous clinical audit of 100 random samples (MD-led) has established the **"Ground Truth Paradox"** of this dataset:
 
-## 🚀 Future Roadmap & Next Steps
-As this project evolves into a production-ready application, the following milestones are planned:
-1. **High-Resolution Architecture:** Re-architecting the model to accept `512x512` inputs to preserve critical radiological tissue details.
-2. **Mitigating Bias:** Implementing Class Weights to balance the dataset and reduce over-prediction of Pneumonia.
-3. **Clinical Metrics:** Shifting focus to true medical metrics: **Recall (Sensitivity), Precision, F1-Score**, and plotting a Confusion Matrix.
-4. ~~**Explainable AI (XAI):**~~ **[COMPLETED]** Integrated Grad-CAM heatmaps and conducted Expert-in-the-Loop clinical evaluation.
-5. **Deployment:** Wrapping the model in a **Gradio or Streamlit** web application for real-time edge inference.
+1. **Statistical Noise:** A consistent **15-17% mismatch** was detected between file labels and radiological findings.
+2. **The "Non-Specific" Trap:** Images labeled "Normal" (e.g., Cases 1, 4, 10, 27, 86) often showed subtle bilateral interstitial patterns, while 20% of "Pneumonia" labels (e.g., Cases 14, 15, 18, 19, 38, 39, 51, 56, 59, 60, 94, 100) were radiologically clean.
+3. **Ground Truth Dual-Validation:** (CRITICAL FINDING) For a robust medical AI, training data must not be selected from clinical diagnosis alone, nor from images alone. Instead, **the ground truth must be derived from images that are both supported by visual positive findings and confirmed by clinical diagnosis.** This dual-validation protocol minimizes "Label Noise" and ensures the model learns true pathological features.
+4. **Impact on AI:** This noise is the primary driver of the high False Positive rate. The model expects "Pneumonia" findings in radiologically normal images, leading to "over-sensitive" but clinically inaccurate predictions.
+
+## 🚀 Model Upgrade v2.0 Strategy
+Having debunked the data quality, we are now building a robust model designed to handle this noise:
+1. **Resolution Leap:** Scaling inputs from `150x150` to `256x256` to preserve critical radiological tissue details.
+2. **Label Bias Mitigation:** Implementing `Class Weights` to force the model to prioritize the under-represented "Normal" class.
+3. **Advanced Evaluation:** Moving beyond "Accuracy" to **Precision-Recall curves** and **Confusion Matrices** to measure performance against our discovered 17% noise floor.
 
 ## 👨‍💻 How to Run
 The entire workflow is contained within a Jupyter Notebook.
