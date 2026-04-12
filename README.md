@@ -65,8 +65,8 @@ For a deep dive into the clinical audit methodology, label noise discovery, and 
 
 ---
 ### 🤝 Author & Contact
-This project was developed and audited by **[Your Name]**, a Medical Doctor specializing in Clinical AI Governance.
+This project was developed and audited by **[Emrah Seker]**, a Medical Doctor specializing in Clinical AI Governance.
 
-- **LinkedIn:** [Connect on LinkedIn](https://www.linkedin.com/in/your-profile-url/)
-- **Email:** [Your Email (Optional)]
+- **LinkedIn:** [[Connect on LinkedIn](https://www.linkedin.com/in/emrah-%C5%9Feker-037741237)]
+- **Email:** [exhume19@gmail.com]
 - **Project Goal:** Bridge the gap between engineering and clinical reality.
