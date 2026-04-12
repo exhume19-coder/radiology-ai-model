@@ -16,6 +16,14 @@ The major breakthrough in this project was the **Clinical Audit**. By reviewing 
 3. **Robust Architecture:** Integrated BatchNormalization and Dropout to ignore noisy clinical labels.
 
 ---
+### 🤝 Author & Contact
+This Clinical Audit was performed by **[Your Name]**, a Medical Doctor specializing in Clinical AI Governance.
+
+- **LinkedIn:** [Connect on LinkedIn](https://www.linkedin.com/in/your-profile-url/)
+- **Email:** [Your Email (Optional)]
+- **Methodology:** Ground Truth Dual-Validation Protocol.
+
+---
 **Status:** Completed & Validated
 **MD Reviewer:** Emrah Seker
 **AI Assistant:** Antigravity AI

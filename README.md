@@ -60,4 +60,12 @@ The entire workflow is contained within a Jupyter Notebook.
 
 ---
 ### 📖 Detailed Process & Findings
-For a deep dive into the clinical audit methodology, label noise discovery, and the transition to v2.0, please refer to our **[Detailed Clinical Audit Report](clinical_audit_report.md)**.
+
+
+---
+### 🤝 Author & Contact
+This project was developed and audited by **[Your Name]**, a Medical Doctor specializing in Clinical AI Governance.
+
+- **LinkedIn:** [Connect on LinkedIn](https://www.linkedin.com/in/your-profile-url/)
+- **Email:** [Your Email (Optional)]
+- **Project Goal:** Bridge the gap between engineering and clinical reality.
