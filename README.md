@@ -8,41 +8,50 @@
 ## 📌 Project Overview
 This project focuses on building a Convolutional Neural Network (CNN) to classify Chest X-Ray images into two categories: **Normal** and **Pneumonia**. 
 
-The goal of this project is not just to train a model, but to understand the end-to-end pipeline of medical imagery classification, identify real-world clinical biases, and iteratively improve a## 🧑‍⚕️ Klinik Yapay Zeka Denetimi (The Doctor's Audit)
-Bu proje, standart bir mühendislik yaklaşımının ötesine geçerek, bir **Tıp Doktorunun (MD)** doğrudan denetimiyle şekillendirilmiştir. Yapay zekanın "kara kutu" (black box) doğası, klinik tecrübe ile sorgulanmış ve şu keşifler yapılmıştır:
+## 🧑‍⚕️ Clinical AI Evaluation (The Doctor's Audit)
+This project transcends standard engineering practices by being directly governed and audited by a **Medical Doctor (MD)**. The "black box" nature of typical AI models was critically examined through clinical experience, leading to the following discoveries:
 
-### 1. Veri Setindeki "Gizli Gürültü" (Label Noise)
-100 adet akciğer grafisi üzerinde yapılan manuel klinik denetim sonucunda:
-- **Hatalı Normal Etiketleri:** "Normal" denilen vakaların yaklaşık %15'inde (Vaka 4, 10, 27, 86 vb.) aslında belirgin **bilateral intersisyel/peribronşial paternler** saptanmıştır.
-- **Hatalı Pnömoni Etiketleri:** "Pnömoni" denilen vakaların %20'sinde (Vaka 14, 15, 18, 19, 94, 100 vb.) ise **pozitif radyolojik bulguya rastlanmamıştır.**
+### 1. Identifying "Label Noise" in the Dataset
+A manual clinical audit of 100 random chest radiographs revealed:
+- **False Negative Labels:** Approximately 15% of images labeled as "Normal" (e.g., Cases 4, 10, 27, 86) actually exhibited clear **bilateral interstitial/peribronchial patterns**.
+- **False Positive Labels:** Approximately 20% of images labeled as "Pneumonia" (e.g., Cases 14, 15, 18, 19, 94, 100) showed **no positive radiological markers** for infiltration.
 
-**Sonuç:** Yapay zekanın %100 başarıya ulaşamamasının sebebi, "yanlış etiketlenmiş" verilerle (klinik tanı var ama radyoloji temiz) eğitilmeye çalışılmasıdır.
+**Conclusion:** The inability of existing models to reach 100% accuracy is not due to architectural failures, but rather the "Noisy Labels" inherited from clinical-only diagnoses that lack radiological confirmation.
 
-### 2. Çift Doğrulama (Dual-Validation) Doktrini
-Hekim denetimi sonucunda projemize şu altın kural getirilmiştir: *"Güvenilir bir AI için veri setleri sadece klinik tanıdan değil, **klinik tanı ile teyit edilmiş ve radyolojik bulgu ile desteklenmiş** görüntülerden seçilmelidir."*
-
----
-
-## 🚀 Model v2.0: Klinik Vizyonun Gücü
-Hekim denetimi sonrası geliştirilen yeni modelimiz şu iyileştirmeleri içermektedir:
-
-*   **Net Görüş (256x256 Resolution):** Pikselleşmeyi önleyerek, doktorun işaret ettiği o ince infiltrasyon detaylarını modelin de görebilmesi sağlandı.
-*   **Önyargı Filtresi (Class Weights):** Veri setindeki Pnömoni çokluğuna rağmen, modelin "Normal" (Sağlıklı) vakaları kaçırmaması için matematiksel bir "dengeleme" uygulandı.
-*   **Klinik Başarı:** v2.0 modelimiz, saptanan %17'lik veri hatalarına rağmen **%91 Doğruluk (Accuracy)** ve **%95 Duyarlılık (Recall)** seviyesine ulaşarak rüştünü ispatlamıştır.
+### 2. The Dual-Validation Doctrine
+The expert audit established a new gold standard for this project: *"To build a reliable medical AI, training data must be derived from images that are **both supported by visual positive findings AND confirmed by clinical diagnosis.**"*
 
 ---
 
-## ⚠️ Kritik Değerlendirme ve Kısıtlamalar (Limitations)
-Her başarılı yapay zeka projesi gibi, bu çalışma da belirli kısıtlamalar altında yürütülmüştür:
-1. **Örneklem Boyutu:** Klinik denetim (audit) 100 vaka ile sınırlıdır; veri setinin tamamındaki gürültü oranını %100 temsil etmeyebilir.
-2. **Tek Merkez Bağımlılığı:** Verilerin tek bir coğrafi bölgeden (Guangzhou) gelmesi, modelin evrensel genellenebilirliğini kısıtlayabilir.
-3. **Binary Basitlik:** Model şimdilik sadece "Normal/Pnömoni" ayrımı yapmaktadır; diğer akciğer patolojilerini (ateletazi, efüzyon vb.) ayırt etme kapasitesi henüz test edilmemiştir.
+## 🚀 Model v2.0: The Power of Clinical Vision
+Following the MD's audit, the model was redesigned with the following improvements:
 
-## 🏁 Sonuç ve Vizyon: "Hekim Odaklı AI"
-Bu çalışma, mevcut tüm kısıtlamalara rağmen şu gerçeği sarsılmaz bir şekilde ortaya koymaktadır: **Tıbbi vizyona sahip uzmanların elinde, uzun soluklu bir süreçte, doğru verilerle ve bu kısıtlamalar göz önüne alınarak kurgulanan yapay zeka modellemeleri, standart mühendislik yaklaşımlarından çok daha verimli ve güvenilir sonuçlar üretmektedir.** Bu proje, "Klinik Denetimli Yapay Zeka" (Expert-in-the-Loop) yaklaşımının radyoloji dünyasındaki en somut örneklerinden biridir.
+*   **Preserving Tissue Detail (256x256):** Increased resolution to prevent pixellation, allowing the AI to "see" the subtle interstitial markings identified during the audit.
+*   **Bias Mitigation (Class Weights):** Implemented a class-weighting strategy to force the model to prioritize the under-represented "Normal" class, reducing over-sensitive diagnostic errors.
+*   **Clinical Performance:** Despite the ~17% label noise, Model v2.0 achieved **91% Accuracy** and a high-fidelity **95% Recall (Sensitivity)**.
+
+---
+
+## 📉 Final Performance Metrics
+| Metric | v1.0 (Standard) | v2.0 (Expert-Audited) |
+| :--- | :---: | :---: |
+| **Pneumonia Recall (Sensitivity)** | ~90% | **95%** |
+| **Pneumonia Precision** | ~80% | **90%** |
+| **Overall Accuracy** | 85% | **91%** |
+
+---
+
+## ⚠️ Critical Reflection & Limitations
+As with any robust scientific study, this project acknowledges the following limits:
+1. **Sample Size:** The clinical audit was limited to 100 cases; it may not represent the full noise distribution of all 5,800 images.
+2. **Geographical Bias:** Data originates from a single pediatric center in Guangzhou, which may limit generalizability to adult or international cohorts.
+3. **Binary Simplification:** The model currently focuses on Normal vs. Pneumonia; multi-pathology detection (effusion, atelectasis) remains a future milestone.
+
+## 🏁 Conclusion and Vision: "Physician-Centric AI"
+This study demonstrates that when AI development is led by **Domain Experts with clinical vision**, the resulting models are significantly more productive, reliable, and scientifically honest than standard "engineering-only" approaches. This project serves as a concrete example of the **Expert-in-the-Loop** paradigm in modern radiology.
 
 ## 👨‍💻 How to Run
 The entire workflow is contained within a Jupyter Notebook.
-1. Open the `case.ipynb` notebook in Google Colab or your local Jupyter environment.
+1. Open the `.ipynb` notebook in Google Colab or your local Jupyter environment.
 2. Upload the respective dataset.
 3. Run all cells sequentially to train and evaluate the model.
