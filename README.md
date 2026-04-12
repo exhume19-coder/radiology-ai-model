@@ -60,4 +60,4 @@ The entire workflow is contained within a Jupyter Notebook.
 
 ---
 ### 📖 Detailed Process & Findings
-For a deep dive into the clinical audit methodology, label noise discovery, and the transition to v2.0, please refer to our **[Detailed Clinical Audit Report](success_story.md)**.
+For a deep dive into the clinical audit methodology, label noise discovery, and the transition to v2.0, please refer to our **[Detailed Clinical Audit Report](clinical_audit_report.md)**.
